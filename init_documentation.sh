@@ -18,7 +18,7 @@ STRING_PROJECT_VERSION="0.0.1"
 pip install -U Sphinx
 
 
-# Setup the documets folder where the documentition will be stored
+# Setup the documents directory where the documentation will be stored
 doc_dir=docs
 rm -r ${doc_dir}
 mkdir ${doc_dir}
