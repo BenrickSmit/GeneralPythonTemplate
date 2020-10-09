@@ -52,10 +52,10 @@ setup:
 # flake8 and isort
 pep:
 	$(call colorecho,"Running PEP Formatters...")
-	PATH_TO_CODE=GeneralPythonTemplate/
-	pipenv run black ${PATH_TO_CODE}
+	PATH_TO_PROJECT="/GeneralPythonTemplate/*"
+	pipenv run black .
 	pipenv run isort .
-	pipenv run flake8 ${PATH_TO_CODE}
+	pipenv run flake8 ${PATH_TO_PROJECT}
 	
 
 # This allows the dev to create an installable package if the project is to be

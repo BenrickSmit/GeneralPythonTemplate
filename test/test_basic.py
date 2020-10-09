@@ -1,9 +1,12 @@
-from .context import GeneralPythonTemplate
 import unittest
 
+from .context import GeneralPythonTemplate
+
+
 def increment(num_input):
-	return num_input+1
-	
+    return num_input + 1
+
+
 class BasicTest(unittest.TestCase):
-	def test(self):
-		self.assertEqual(increment(3),4)
+    def test(self):
+        self.assertEqual(increment(3), 4)
