@@ -21,51 +21,51 @@ endef
 
 # The @ makes sure that the command itself isn't echoed in the terminal
 help:
-	$(call colorecho,"---------------HELP-----------------" $(LD))
-	$(call colorecho,"To setup the project type make setup${}" $(LD))
-	$(call colorecho,"To test the project type make test${}" $(LD))
-	$(call colorecho,"To run the project type make run${}" $(LD))
-	$(call colorecho,"To clean additional files/dirs in the project type make clean${}" $(LD))
-	$(call colorecho,"To autopep the project type make pep${}" $(LD))
-	$(call colorecho,"To create an executable with the project type make freeze${}" $(LD))
-	$(call colorecho,"To create an installable package type make package${}" $(LD))
-	$(call colorecho,"------------------------------------" $(LD))
+	$(call colorecho,"--------------------------HELP----------------------------" )
+	$(call colorecho,"To setup the project type make setup" )
+	$(call colorecho,"To test the project type make test" )
+	$(call colorecho,"To run the project type make run" )
+	$(call colorecho,"To clean created files/dirs type make clean" )
+	$(call colorecho,"To autopep the project type make pep" )
+	$(call colorecho,"To create an executable type make freeze" )
+	$(call colorecho,"To create an installable package type make package" )
+	$(call colorecho,"----------------------------------------------------------" )
 
 # This generates the desired project file structure
 # A very important thing to note is that macros (or makefile variables) are referenced in the target's code with a single dollar sign ${}, but all script variables 
 # are referenced with two dollar signs $${}
 setup:
-	$(call colorecho,"Install pipenv for use..." $(LD))
+	$(call colorecho,"Install pipenv for use..." )
 	${PYTHON} -m pip install --user pipenv
-	$(call colorecho,"Ensure the required packages are installed..." $(LD))
+	$(call colorecho,"Ensure the required packages are installed..." )
 	pipenv install -r requirements.txt
-	$(call colorecho,"Ensure that the documentation is properly created..." $(LD))
+	$(call colorecho,"Ensure that the documentation is properly created..." )
 	chmod u+x init_documentation.sh
 	./init_documentation.sh
-	$(call colorecho,"Install Black, Flake8, Isort" $(LD))
+	$(call colorecho,"Install Black, Flake8, Isort" )
 	pipenv install black flake8 isort --dev
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 
 	
 # This ensure the python modules follow the correct format by running black, 
 # flake8 and isort
 pep:
-	$(call colorecho,"Running PEP Formatters..." $(LD))
+	$(call colorecho,"Running PEP Formatters..." )
 	PATH_TO_CODE=GeneralPythonTemplate/
 	pipenv run black ${PATH_TO_CODE}
 	pipenv run isort .
 	pipenv run flake8 ${PATH_TO_CODE}
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 
 # This allows the dev to create an installable package if the project is to be
 # installed via pip in the future
 package:
 	# Ensure the packages required for setting up an installable package
 	# are installed
-	$(call colorecho,"Installing distribution archive dependencies..." $(LD))
+	$(call colorecho,"Installing distribution archive dependencies..." )
 	pipenv install twine
 	pipenv install setuptools wheel
-	$(call colorecho,"Create Distribution Archive..." $(LD))
+	$(call colorecho,"Create Distribution Archive..." )
 	pipenv run ${PYTHON} setup.py sdist bdist_wheel
 	
 	# To allow the package to be uploaded to PyPI you must have registered
@@ -76,41 +76,41 @@ package:
 	# The command below will prompt you for a username and password.
 	# You can use "__token__" as the username and pypi-<API_TOKEN>
 	# as the password (naturally remove the <>) from the API key.
-	$(call colorecho,"Uploading Distribution Archive to PyPi..." $(LD))
+	$(call colorecho,"Uploading Distribution Archive to PyPi..." )
 	pipenv run ${PYTHON} -m twine upload --repository testpypi dist/*
 	# Your package can now be installed with pip and the package name
 	# FOR MORE INFORMATION LOOK AT "CreateDistributionArchive.sh"
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 
 # This allows the dev to freeze the current python system while creating an
 # executable for later use
 freeze:
-	$(call colorecho,"Install the pre-requisites for PyInstaller..." $(LD))
+	$(call colorecho,"Install the pre-requisites for PyInstaller..." )
 	pipenv install pyinstaller pefile 
-	$(call colorecho,"Run PyInstaller with the pre-specified file..." $(LD))
+	$(call colorecho,"Run PyInstaller with the pre-specified file..." )
 	pipenv run pyinstaller --onefile GeneralPythonTemplate/core.py --name template
-	$(call colorecho,"For more information on PyInstaller use this:" $(LD))
-	$(call colorecho,"https://pyinstaller.readthedocs.io/en/stable/usage.html" $(LD))
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"For more information on PyInstaller use this:" )
+	$(call colorecho,"https://pyinstaller.readthedocs.io/en/stable/usage.html" )
+	$(call colorecho,"" )
 
 # The ${} notation is specific to the make syntax and is very similar to bash's $() 
 # This function uses pytest/unittest to test our source files
 test:
-	$(call colorecho,"Running Python module/class tests..." $(LD))
+	$(call colorecho,"Running Python module/class tests..." )
 	#${PYTHON} -m pytest
 	${PYTHON} -m unittest test/test_basic.py
 	${PYTHON} -m unittest test/test_advanced.py\
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 	
 run:
-	$(call colorecho,"Running base Python program..." $(LD))
+	$(call colorecho,"Running base Python program..." )
 	pipenv run ${PYTHON} GeneralPythonTemplate/core.py
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 
 # In this context, the *.project pattern means "anything that has the .project extension"
 clean:
-	$(call colorecho,"Cleaning Project..." $(LD))
+	$(call colorecho,"Cleaning Project..." )
 	rm -r docs
 	rm -r dist
-	$(call colorecho,"" $(LD))
+	$(call colorecho,"" )
 	
