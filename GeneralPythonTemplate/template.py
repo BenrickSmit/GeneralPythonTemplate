@@ -2,37 +2,34 @@
 # comments, and docstrings
 
 # This is a programmer comment: e.g. This function slows down execution
-# This NumPy Style docstring is often used for complex functions
+# This Google Style docstring is often used for complex functions
 def random_number_generator(arg1, arg2):
     """
     Summary line.
 
     Extended description of function in a NumPy style docstring.
 
-    Parameters
-    ----------
-    arg1 : int
-            Description of arg1
-    arg2 : str
-            Description of arg2
+    Parameters:
+        arg1 : int
+                Description of arg1
+        arg2 : str
+                Description of arg2
 
-    Returns
-    -------
-    int
-            Description of return value
+    Returns:
+        int
+                Description of return value
 
-    Raises
-    ------
-    IOError: An error occurred accessing the values.
+    Raises:
+        IOError: An error occurred accessing the values.
 
     .. note::
-            An example of a note in reStructuredText
+        An example of a note in reStructuredText
 
     .. warning::
-            Never, ever, use this code!
+        Never, ever, use this code!
 
     .. versionadded:: 0.0.1
-            It's okay to use this code.
+        It's okay to use this code.
     """
     return 42
 

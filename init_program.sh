@@ -3,7 +3,7 @@ make setup
 # Ensure PEP8 compatibility
 make pep
 # Run the tests
-make test
+make tests
 # Run the program
 make run
 # Create the executable file

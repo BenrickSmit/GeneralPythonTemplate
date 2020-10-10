@@ -27,7 +27,8 @@ mkdir ${doc_dir}
 # Run the Sphinx Quickstart menu with some necessary default options
 # There is an error with sphinx-quickstart and a space in any strings due to how bash 
 # functions , so use single strings with _ for spaces
-sphinx-quickstart -q --sep -p ${STRING_PROJECT_NAME} -a ${STRING_AUTHOR_NAME} -v ${STRING_PROJECT_VERSION} --ext-autodoc --ext-doctest --ext-intersphinx --ext-ifconfig --ext-githubpages --makefile --batchfile -l en ${doc_dir}
+pip install numpydoc
+sphinx-quickstart -q --sep -p ${STRING_PROJECT_NAME} -a ${STRING_AUTHOR_NAME} -v ${STRING_PROJECT_VERSION} --ext-autodoc --ext-doctest --ext-intersphinx --ext-ifconfig --ext-githubpages --extensions sphinx.ext.napoleon --makefile --batchfile -l en ${doc_dir}
 
 
 # Find all .py files in the project directory, and add them to the index.rst file in
