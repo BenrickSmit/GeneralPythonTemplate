@@ -22,7 +22,7 @@ When you use the template make sure to do the following:
  - Ensure you have the proper License and you added in the License code at the
     top of all your project files
 
-Find the project (here)[github.com/BenrickSmit/GeneralPythonTemplate], if you did not find this project on my github.
+Find the project [here](github.com/BenrickSmit/GeneralPythonTemplate]), if you did not find this project on my github.
 
 # Features
 This states the current features provided by the program
@@ -43,5 +43,5 @@ This gives information on the dependencies required by the python program
 This states how others can contribute to the project, and what styles to use
 
 # License
-This states the (licence)[LICENSE]
+This states the [licence](LICENSE)
 
