@@ -2,6 +2,7 @@
 # Makefile macros (or variables) are defined a little bit differently than traditional bash, keep in mind that in the Makefile there's top-level Makefile-only syntax, 
 # and everything else is bash script syntax.
 PYTHON = python3
+PROJECT_DIR = GeneralPythonTemplate
 
 # Define a function to help with readability
 define colorecho
@@ -38,7 +39,7 @@ help:
 # are referenced with two dollar signs $${}
 setup:
 	$(call colorecho, ">>>> Install pipenv for use...")
-	${PYTHON} -m pip install --user pipenv
+	${PYTHON} -m pip install pipenv
 	$(call colorecho, ">>>> Ensure the required packages are installed...")
 	@pipenv install -r requirements.txt
 	$(call colorecho, ">>>> Ensure the documentation is created with Sphinx...")
@@ -54,7 +55,7 @@ setup:
 # flake8 and isort
 pep:
 	$(call colorecho, ">>>> Running PEP Formatters...")
-	@PATH_TO_PROJECT="/GeneralPythonTemplate/*"
+	@PATH_TO_PROJECT=${PROJECT_DIR}"/*"
 	@pipenv run black .
 	@pipenv run isort .
 	@pipenv run flake8 ${PATH_TO_PROJECT}
@@ -91,7 +92,7 @@ freeze:
 	$(call colorecho, ">>>> Install the pre-requisites for PyInstaller...")
 	@pipenv install pyinstaller pefile --dev
 	$(call colorecho, ">>>> Run PyInstaller with the pre-specified file...")
-	@pipenv run pyinstaller --onefile GeneralPythonTemplate/core.py --name template
+	@pipenv run pyinstaller --onefile ${PROJECT_DIR}/core.py --name template
 	$(call colorecho, ">>>> For more information on PyInstaller use this:")
 	$(call colorecho, ">>>> https://pyinstaller.readthedocs.io/en/stable/usage.html")
 	@echo ""
@@ -108,7 +109,7 @@ tests:
 
 run:
 	$(call colorecho, ">>>> Running base Python program...")
-	@pipenv run ${PYTHON} GeneralPythonTemplate/core.py
+	@pipenv run ${PYTHON} ${PROJECT_DIR}/core.py
 	@echo ""
 
 # In this context, the *.project pattern means "anything that has the .project extension"
